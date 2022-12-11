@@ -4,10 +4,10 @@ namespace Fuhrparkverwaltung
 	public class Auto
 	{
 		private int kilometernStand;
-		private double tankinhaltInLiter;
-		private readonly double verbrauchInLiter;
+		private double tankinhaltInLiter = 0;
+		private readonly double verbrauchInLiter = 0;
 
-		public Auto (int kilometernStand, double tankinhaltInLiter, double verbrauchInLiter):this(kilometernStand)
+		public Auto(int kilometernStand, double tankinhaltInLiter, double verbrauchInLiter):this(kilometernStand)
         {
 			this.tankinhaltInLiter= tankinhaltInLiter;
 			this.verbrauchInLiter = verbrauchInLiter;
@@ -29,16 +29,26 @@ namespace Fuhrparkverwaltung
 		public void Fahren(int streckeInKilomertern)
 		{
 			double gesamtVerbrauchInLiter;
+			double moeglichtFahrbarStreckeInKilometer;
 			if (streckeInKilomertern > 0)
 			{
-				kilometernStand += streckeInKilomertern;
 				gesamtVerbrauchInLiter = streckeInKilomertern / 100.0 * verbrauchInLiter;
+				moeglichtFahrbarStreckeInKilometer = tankinhaltInLiter / verbrauchInLiter * 100.0;
+
 				if (tankinhaltInLiter > gesamtVerbrauchInLiter)
 				{
+					kilometernStand += streckeInKilomertern;
 					tankinhaltInLiter -= gesamtVerbrauchInLiter;
 				} else
 				{
 					tankinhaltInLiter = 0;
+					if (!Double.IsNaN(moeglichtFahrbarStreckeInKilometer))
+					{
+						kilometernStand += Convert.ToInt32(moeglichtFahrbarStreckeInKilometer);
+					} else
+					{
+						kilometernStand += streckeInKilomertern;
+					}
 				}
 			}
 		}

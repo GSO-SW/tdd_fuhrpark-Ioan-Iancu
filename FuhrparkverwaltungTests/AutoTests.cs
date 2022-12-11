@@ -59,10 +59,26 @@ namespace FuhrparkverwaltungTests
             double tankinhalt = 10;
             double verbrauch = 5.7;
             Auto a = new Auto(kilometerstand, tankinhalt, verbrauch);
+            int streckeInKilometer = 200;
             //Act
-            a.Fahren(200);
+            a.Fahren(streckeInKilometer);
             //Assert
             Assert.AreEqual(0, a.TankinhaltInLiter);
+        }
+
+        [TestMethod]
+        public void Fahren_KilometerstandSteigtSolangeTankinhaltReicht()
+        {
+            //Arrange
+            int kilometerstand = 0;
+            double tankinhalt = 10;
+            double verbrauch = 5.7;
+            Auto a = new Auto(kilometerstand, tankinhalt, verbrauch);
+            int streckeInKilometer = 200;
+            //Act
+            a.Fahren(streckeInKilometer);
+            //Assert
+            Assert.AreEqual(175, a.Kilometerstand);
         }
     }
 }
