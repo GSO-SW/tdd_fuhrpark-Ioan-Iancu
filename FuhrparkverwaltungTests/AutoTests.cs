@@ -37,18 +37,32 @@ namespace FuhrparkverwaltungTests
         }
 
         [TestMethod]
-        public void Fahren_TankInhaltWirdGeleertEntsprechendDerVerbrauch()
+        public void Fahren_TankinhaltWirdGeleertEntsprechendDemVerbrauch()
         {
             //Arrange
-            int kilometerStand = 0;
+            int kilometerstand = 0;
             double verbrauchInLiter = 10.0;
             double tankinhaltInLiter = 60.0;
-            Auto a = new Auto(kilometerStand, tankinhaltInLiter, verbrauchInLiter);
+            Auto a = new Auto(kilometerstand, tankinhaltInLiter, verbrauchInLiter);
             int streckeInKilometer = 120;
             //Act
             a.Fahren(streckeInKilometer);
             //Assert
             Assert.AreEqual(48, a.TankinhaltInLiter);
+        }
+
+        [TestMethod]
+        public void Fharen_TankinhaltDarfNichtNegativWerden()
+        {
+            //Arrange
+            int kilometerstand = 0;
+            double tankinhalt = 10;
+            double verbrauch = 5.7;
+            Auto a = new Auto(kilometerstand, tankinhalt, verbrauch);
+            //Act
+            a.Fahren(200);
+            //Assert
+            Assert.AreEqual(0, a.TankinhaltInLiter);
         }
     }
 }

@@ -33,7 +33,13 @@ namespace Fuhrparkverwaltung
 			{
 				kilometernStand += streckeInKilomertern;
 				gesamtVerbrauchInLiter = streckeInKilomertern / 100.0 * verbrauchInLiter;
-				tankinhaltInLiter -= gesamtVerbrauchInLiter;
+				if (tankinhaltInLiter > gesamtVerbrauchInLiter)
+				{
+					tankinhaltInLiter -= gesamtVerbrauchInLiter;
+				} else
+				{
+					tankinhaltInLiter = 0;
+				}
 			}
 		}
 
