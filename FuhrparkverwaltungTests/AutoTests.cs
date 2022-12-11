@@ -20,5 +20,21 @@ namespace FuhrparkverwaltungTests
             //Assert
             Assert.AreEqual(50, a.Kilometerstand);
         }
+
+        [TestMethod]
+        public void Fahren_NichtVeraendernKilometerstandWennNegativ()
+        {
+            //Arrage
+            int kilometerstand = 25;
+            Auto a = new Auto(kilometerstand);
+            int negativeStreckeInKilometern = -5;
+
+            //Act
+            a.Fahren(negativeStreckeInKilometern);
+
+            //Assert
+
+            Assert.AreEqual(25, a.Kilometerstand);
+        }
     }
 }

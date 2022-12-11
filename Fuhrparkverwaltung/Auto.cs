@@ -20,8 +20,13 @@ namespace Fuhrparkverwaltung
 
 		public void Fahren(int streckeInKilomertern)
 		{
-			kilometernStand += streckeInKilomertern;
+			if (streckeInKilomertern > 0)
+			{
+				kilometernStand += streckeInKilomertern;
+
+			}
 		}
+
 	}
 }
 
